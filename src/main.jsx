@@ -58,7 +58,7 @@ function App() {
         <div className="hero-track" style={{ transform: `translateX(-${active * 100}%)` }}>
           {destinations.map((destination) => (
             <article className="hero-slide" key={destination.name}>
-              <video autoPlay muted loop playsInline poster={destination.image}><source src={destination.video} type="video/mp4" /></video>
+              <video autoPlay muted loop playsInline preload="auto" src={destination.video} aria-label={`Video ${destination.name} di Dusun Pundung`} />
               <div className="hero-shade" />
               <div className="hero-copy"><p className="eyebrow">Profil Dusun Pundung, Girikarto</p><h1>Dusun Pundung</h1><p className="hero-destination">{destination.title}</p></div>
               <div className="place-label"><span>{destination.region}</span><strong>{destination.name}</strong><a href={destination.mapsUrl} target="_blank" rel="noreferrer">Lihat di Google Maps <ExternalLink size={15} /></a></div>
