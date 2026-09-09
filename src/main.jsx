@@ -176,7 +176,19 @@ function App() {
       <section className="history-section" id="sejarah">
         <div className="section-kicker"><History size={17} /> Sejarah Pundung</div>
         <h2>Dari cerita warga,<br /><em>tumbuh jadi identitas.</em></h2>
-        <div className="history-content"><p>Dusun Pundung adalah bagian dari Kalurahan Girikarto yang hidup dari gotong royong, tradisi, dan hubungan dekat antarwarga. Setiap sudut dusun menyimpan cerita tentang keluarga, ladang, dan kegiatan bersama.</p><p>Halaman ini menjadi ruang untuk mengenalkan Pundung kepada siapa saja yang ingin melihat potensi, kegiatan, serta karya warga secara lebih dekat.</p></div>
+        <div className="history-content">
+          <div className="history-lead">
+            <p>Padukuhan Pundung memiliki sejarah yang berkaitan erat dengan perkembangan wilayah Kalurahan Girikarto. Berdasarkan cerita yang diwariskan oleh para tetua, wilayah Pundung dahulu dikaitkan dengan seorang tokoh yang dikenal sebagai Mbah Tamansari, yang dipercaya sebagai salah satu orang yang lebih dahulu mendiami wilayah tersebut.</p>
+            <p>Mbah Tamansari memiliki anak bernama Durjono dan seorang anak perempuan bernama Surti yang kemudian menikah dengan Dipojoyosari. Kisah mengenai Mbah Tamansari menjadi salah satu bagian dari cerita masyarakat mengenai awal keberadaan permukiman di wilayah Pundung.</p>
+          </div>
+          <div className="history-body">
+            <p>Asal-usul nama Pundung berkaitan dengan proses babad alas atau pembukaan wilayah. Dalam cerita masyarakat, ketika dilakukan pembukaan lahan, ditemukan sebuah gundukan besar yang dipercaya sebagai rumah rayap purba. Gundukan tersebut memiliki ukuran yang tidak biasa sehingga kemudian dianggap sebagai tempat yang memiliki nilai khusus dan dikeramatkan oleh masyarakat atau para tetua setempat.</p>
+            <p>Keberadaan gundukan tersebut kemudian menjadi salah satu penanda wilayah. Istilah “pundung” sendiri berkaitan dengan sebutan untuk gundukan atau rumah rayap berukuran besar, sehingga dipercaya menjadi asal mula penggunaan nama Pundung.</p>
+            <p>Dalam perkembangannya, wilayah tersebut disebut pernah mengalami perubahan nama, yaitu dari Sidarejo, kemudian Pundung Sari, hingga akhirnya dikenal sebagai Pundung. Perubahan nama tersebut menunjukkan adanya perkembangan wilayah dan permukiman dari masa ke masa. Pundung kemudian berkembang menjadi salah satu padukuhan yang berada di wilayah Kalurahan Girikarto.</p>
+            <p>Meskipun demikian, hubungan kronologis antara Mbah Tamansari, perubahan nama Sidarejo dan Pundung Sari, serta terbentuknya Pundung sebagai bagian dari Girikarto masih memerlukan penelusuran lebih lanjut melalui sumber sejarah lokal dan keterangan dari tokoh masyarakat setempat.</p>
+            <p>Dengan demikian, sejarah Padukuhan Pundung tidak terlepas dari proses pembukaan wilayah, perkembangan permukiman, serta pembentukan wilayah Kalurahan Girikarto. Cerita mengenai Mbah Tamansari dan ditemukannya gundukan besar dalam proses babad alas menjadi bagian penting dari sejarah lisan yang masih diwariskan oleh masyarakat hingga saat ini.</p>
+          </div>
+        </div>
       </section>
 
       <section className="sarana-section" id="sarana-infrastruktur">
