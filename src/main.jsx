@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, ExternalLink, History, MapPin, Menu, Sprout, Store, X } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Building2, ExternalLink, History, MapPin, Menu, Sprout, Users, X } from 'lucide-react'
 import './style.css'
 
 const destinations = [
   {
     name: 'Lomba Tahunan', region: 'Pundung, Girikarto, Panggang, Gunungkidul, Daerah Istimewa Yogyakarta', title: 'Pertandingan Voli Antar Padukuhan Tiap Tahun',
     video: '/images/VID_20260811_211058.mp4',
-    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85', mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Pundung%2C%20Girikarto%2C%20Panggang%2C%20Gunungkidul%2C%20Daerah%20Istimewa%20Yogyakarta%2C%20Indonesia',
+    image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85', mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Pundung%2C%20Girikarto%2C%20Panggang%2C%20Gunungkidul%2C%20Daerah%20Istimewa%20Y ogyakarta%2C%20Indonesia',
   },
   {
     name: 'Peternakan', region: 'Pundung, Girikarto, Panggang, Gunungkidul, Daerah Istimewa Yogyakarta', title: 'Peternakan berbagai hewan di pundung',
@@ -21,13 +21,98 @@ const destinations = [
   },
 ]
 
+const saranaItems = [
+  {
+    name: 'Sarana Budaya',
+    title: 'Sarana Budaya',
+    description: 'Sarana budaya untuk memperkuat tradisi, kebersamaan, dan nilai luhur masyarakat dusun.',
+    image: encodeURI('/images/Sarana Budaya.jpeg'),
+  },
+  {
+    name: 'Sarana Ibadah Vihara',
+    title: 'Sarana Ibadah Vihara',
+    description: 'Sarana ibadah vihara sebagai pusat kegiatan spiritual dan kebersamaan umat.',
+    image: encodeURI('/images/Sarana Ibadah Vihara.jpeg'),
+  },
+  {
+    name: 'Sarana Ibadah',
+    title: 'Sarana Ibadah',
+    description: 'Sarana ibadah untuk mendukung aktivitas keagamaan dan pembinaan spiritual warga.',
+    image: encodeURI('/images/Sarana Ibadah.jpeg'),
+  },
+  {
+    name: 'Sarana Keamanan',
+    title: 'Sarana Keamanan',
+    description: 'Sarana keamanan menjaga ketenteraman, keteraturan, dan rasa aman dalam lingkungan padukuhan.',
+    image: encodeURI('/images/Sarana Keamanan.jpeg'),
+  },
+  {
+    name: 'Sarana Olahraga',
+    title: 'Sarana Olahraga',
+    description: 'Sarana olahraga sebagai wahana aktifitas fisik, kebugaran, dan lomba antar warga.',
+    image: encodeURI('/images/Sarana Olahraga.jpeg'),
+  },
+  {
+    name: 'Sarana Pemerintahan',
+    title: 'Sarana Pemerintahan',
+    description: 'Sarana pemerintahan untuk pelayanan administratif dan koordinasi kegiatan padukuhan.',
+    image: encodeURI('/images/Sarana Pemerintahan.jpeg'),
+  },
+  {
+    name: 'Sarana Perdagangan',
+    title: 'Sarana Perdagangan',
+    description: 'Sarana perdagangan mendukung transaksi, ekonomi lokal, dan akses kebutuhan harian warga.',
+    image: encodeURI('/images/Sarana Perdagangan.jpeg'),
+  },
+  {
+    name: 'Sarana Pertanian',
+    title: 'Sarana Pertanian',
+    description: 'Sarana pertanian menunjang kegiatan bercocok tanam, pengelolaan lahan, dan hasil panen.',
+    image: encodeURI('/images/Sarana Pertanian.jpeg'),
+  },
+  {
+    name: 'Sarana Peternakan',
+    title: 'Sarana Peternakan',
+    description: 'Sarana peternakan mendukung usaha ternak dan pengelolaan sumber daya lokal.',
+    image: encodeURI('/images/Sarana Peternakan.jpeg'),
+  },
+  {
+    name: 'Sarana UMKM',
+    title: 'Sarana UMKM',
+    description: 'Sarana UMKM sebagai ruang pengembangan usaha kecil, kreativitas, dan ekonomi kreatif warga.',
+    image: encodeURI('/images/Sarana UMKM.jpeg'),
+  },
+  {
+    name: 'Infrastruktur Balai',
+    title: 'Infrastruktur Balai',
+    description: 'Infrastruktur balai dusun sebagai ruang pertemuan, musyawarah, dan pelayanan komunitas.',
+    image: encodeURI('/images/Infrastruktur Balai.jpeg'),
+  },
+  {
+    name: 'Infrastruktur Jalan',
+    title: 'Infrastruktur Jalan',
+    description: 'Infrastruktur jalan untuk konektivitas, distribusi, dan mobilitas warga padukuhan.',
+    image: encodeURI('/images/Infrastruktur Jalan.jpeg'),
+  },
+  {
+    name: 'Infrastruktur Tiang Listrik',
+    title: 'Infrastruktur Tiang Listrik',
+    description: 'Infrastruktur tiang listrik mendukung penerangan, pelayanan publik, dan aktivitas warga.',
+    image: encodeURI('/images/Infrastruktur Tiang Listrik.jpeg'),
+  },
+]
+
 const mapLocation = 'Pundung, Girikarto, Panggang, Gunungkidul, Daerah Istimewa Yogyakarta, Indonesia'
 const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapLocation)}`
 
 function App() {
   const [active, setActive] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [saranaActive, setSaranaActive] = useState(0)
   const move = (direction) => setActive((current) => (current + direction + destinations.length) % destinations.length)
+  const moveSarana = (direction) => {
+    setSaranaActive((current) => (current + direction + saranaItems.length) % saranaItems.length)
+  }
 
   useEffect(() => {
     const slideTimer = setInterval(() => move(1), 10000)
@@ -44,9 +129,10 @@ function App() {
         <nav className={menuOpen ? 'open' : ''} aria-label="Navigasi utama">
           <a href="#sejarah" onClick={() => setMenuOpen(false)}>SEJARAH</a>
           <a href="#lokasi" onClick={() => setMenuOpen(false)}>LOKASI</a>
-          <a href="#kegiatan" onClick={() => setMenuOpen(false)}>KEGIATAN</a>
-          <a href="#umkm" onClick={() => setMenuOpen(false)}>UMKM</a>
+          <a href="#sarana-infrastruktur" onClick={() => setMenuOpen(false)}>SARANA &amp; INFRASTRUKTUR</a>
+          <a href="#organisasi" onClick={() => setMenuOpen(false)}>ORGANISASI</a>
           <a href="#potensi-dukuh" onClick={() => setMenuOpen(false)}>POTENSI DUKUH</a>
+          <a href={encodeURI('/images/Buku Profil Padukuhan.pdf')} download="Buku-Profil-Padukuhan-Pundung.pdf" onClick={() => setMenuOpen(false)}>DOWNLOAD BUKU PROFIL</a>
         </nav>
         <button className="menu-button" onClick={() => setMenuOpen((open) => !open)} aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'} aria-expanded={menuOpen}>
           {menuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -70,6 +156,16 @@ function App() {
         <div className="hero-progress" aria-label="Posisi carousel">{destinations.map((item, index) => <button key={item.name} className={index === active ? 'active' : ''} onClick={() => setActive(index)} aria-label={`Pilih ${item.name}`} />)}</div>
       </section>
 
+      <section className="organization-section" id="organisasi">
+        <div className="organization-wrap">
+          <div className="section-kicker"><Users size={17} /> Lembaga Padukuhan</div>
+          <h2>Struktur Organisasi dan Lembaga<br /><em>Padukuhan Pundung</em></h2>
+          <div className="organization-frame">
+            <img src={encodeURI('/images/Struktur Pundung.jpeg')} alt="Struktur Organisasi Lembaga Padukuhan Pundung" />
+          </div>
+        </div>
+      </section>
+
       <section className="discovery" id="lokasi">
         <div className="section-kicker"><MapPin size={17} /> Lokasi Dusun</div>
         <h2>Kenali Pundung<br /><em>lebih dekat.</em></h2>
@@ -83,22 +179,53 @@ function App() {
         <div className="history-content"><p>Dusun Pundung adalah bagian dari Kalurahan Girikarto yang hidup dari gotong royong, tradisi, dan hubungan dekat antarwarga. Setiap sudut dusun menyimpan cerita tentang keluarga, ladang, dan kegiatan bersama.</p><p>Halaman ini menjadi ruang untuk mengenalkan Pundung kepada siapa saja yang ingin melihat potensi, kegiatan, serta karya warga secara lebih dekat.</p></div>
       </section>
 
-      <section className="spotlight" id="kegiatan">
-        <div className="spotlight-heading"><div><div className="section-kicker light"><CalendarDays size={17} /> Kegiatan Warga</div><h2>Bergerak bersama,<br /><em>merawat kebersamaan.</em></h2></div></div>
-        <div className="story-grid"><article className="story story-large" style={{ backgroundImage: `url(${destinations[0].image})` }}><span>Agenda tahunan</span><h3>Voli antar padukuhan</h3><p>Ruang bertemu dan berkompetisi yang selalu dinantikan warga Pundung.</p></article><article className="story story-small" style={{ backgroundImage: `url(${destinations[1].image})` }}><span>Kegiatan harian</span><h3>Peternakan warga</h3><p>Potensi ternak yang tumbuh dari ketekunan dan pengetahuan lokal.</p></article></div>
-      </section>
-
-      <section className="umkm-section" id="umkm">
-        <div className="section-kicker"><Store size={17} /> UMKM Pundung</div>
-        <h2>Karya lokal,<br /><em>bernilai untuk semua.</em></h2>
-        <div className="umkm-grid"><article><strong>01</strong><h3>Produk canting</h3><p>Keterampilan dan distribusi canting menjadi salah satu karya usaha yang berkembang di Pundung.</p></article><article><strong>02</strong><h3>Usaha rumahan</h3><p>Produk olahan dan kerajinan warga hadir dari rumah, dikerjakan dengan teliti dan penuh cerita.</p></article><article><strong>03</strong><h3>Ruang kolaborasi</h3><p>Dukung UMKM Pundung dengan mengenal, mengunjungi, dan membagikan karya mereka.</p></article></div>
+      <section className="sarana-section" id="sarana-infrastruktur">
+        <div className="section-kicker"><Building2 size={17} /> Sarana dan Infrastruktur</div>
+        <h2>Ruang layanan warga,<br /><em>untuk tumbuh bersama.</em></h2>
+        <div className="sarana-carousel">
+          <button className="sarana-arrow left" onClick={() => moveSarana(-1)} aria-label="Sarana sebelumnya"><ArrowLeft size={20} /></button>
+          <div className="sarana-window">
+            <div className="sarana-track" style={{ transform: `translateX(-${saranaActive * 100}%)` }}>
+              {saranaItems.map((item) => (
+                <article className="sarana-slide" key={item.name}>
+                  <div className="sarana-image" style={{ backgroundImage: `url(${item.image})` }} />
+                  <div className="sarana-content">
+                    <span className="sarana-category">{item.name}</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+          <button className="sarana-arrow right" onClick={() => moveSarana(1)} aria-label="Sarana berikutnya"><ArrowRight size={20} /></button>
+        </div>
+        <div className="sarana-dots">
+          {saranaItems.map((item, index) => (
+            <button key={item.name} className={index === saranaActive ? 'active' : ''} onClick={() => setSaranaActive(index)} aria-label={`Pilih ${item.name}`} />
+          ))}
+        </div>
       </section>
 
       <section className="potential-section" id="potensi-dukuh">
-        <div className="section-kicker light"><Sprout size={17} /> Potensi Dukuh</div>
-        <h2>Pundung punya<br /><em>banyak kemungkinan.</em></h2>
-        <p className="potential-copy">Dari pertanian, peternakan, olahraga, hingga usaha kreatif, potensi Pundung tumbuh dari warga yang mau menjaga dusun dan mengembangkannya bersama.</p>
-        <a href="#lokasi" className="outline-link">Jelajahi Pundung <ArrowUpRight size={17} /></a>
+        <div className="potential-layout">
+          <div className="potential-content">
+            <div className="section-kicker light"><Sprout size={17} /> Potensi Dukuh</div>
+            <h2>Pundung punya<br /><em>banyak kemungkinan.</em></h2>
+            <p className="potential-copy">Dari pertanian, peternakan, olahraga, hingga usaha kreatif, potensi Pundung tumbuh dari warga yang mau menjaga dusun dan mengembangkannya bersama.</p>
+            <div className="potential-feature">
+              <span className="feature-label">Wisata Unggulan</span>
+              <h3>Goa Meteor</h3>
+              <p>Wisata alam yang menjadi potensi budaya dan pariwisata dusun Pundung.</p>
+            </div>
+            <a href="#lokasi" className="outline-link">Jelajahi Pundung <ArrowUpRight size={17} /></a>
+          </div>
+          <div className="potential-image-wrap">
+            <div className="potential-image" style={{ backgroundImage: `url(${encodeURI('/images/Goa Meteor.jpeg')})` }}>
+              <span className="potential-image-label">Goa Meteor</span>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
